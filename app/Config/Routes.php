@@ -34,6 +34,11 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'loginController::index');
 $routes->get('/admin/(:any)', 'loginController::login_action');
+$routes->get('/toko', 'tokoController::index');
+$routes->get('/produk', 'produkController::index');
+$routes->get('/adminToko', 'adminController::adminToko');
+$routes->get('/admin', 'adminController::index');
+$routes->delete('/hapusProduk/(:num)', 'produkController::hapusProduk/$1');
 // $routes->get('/', 'loginController::index');
 
 /*
