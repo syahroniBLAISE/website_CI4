@@ -39,6 +39,8 @@ $routes->get('/produk', 'produkController::index');
 $routes->get('/adminToko', 'adminController::adminToko');
 $routes->get('/admin', 'adminController::index');
 $routes->delete('/hapusProduk/(:num)', 'produkController::hapusProduk/$1');
+$routes->post('/getProduk', 'produkController::getProduk');
+$routes->post('/updateProduk', 'produkController::updateProduk');
 // $routes->get('/', 'loginController::index');
 
 /*

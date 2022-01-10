@@ -15,7 +15,7 @@ class loginController extends BaseController
      $userLogin = true;
       if($userLogin == true)
       {
-         return redirect()->to(base_url('adminController'));
+         return redirect()->to(base_url('admin'));
       }else{
          return redirect()->to(base_url('LoginController'));
       }

@@ -16,6 +16,13 @@ class adminController extends BaseController
         return view('admin/adminToko', compact('data'));
 
     }
+    public function getProduk()
+    {
+        $dataBarang = new produkModel();
+        $data = $dataBarang->get_data_all();
+        return $data;
+
+    }
 }
 
 

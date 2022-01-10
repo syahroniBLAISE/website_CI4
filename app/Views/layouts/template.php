@@ -385,7 +385,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; syahroni <?= date('Y');?></span>
                     </div>
                 </div>
             </footer>
@@ -422,6 +422,12 @@
         </div>
     </div>
 
+    <!-- Jquery -->
+    <!-- <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script> -->
+
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url();?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?= base_url();?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -435,11 +441,66 @@
     <script src="<?= base_url();?>/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="<?= base_url();?>/vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="<?= base_url();?>/vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="<?= base_url();?>/js/demo/chart-area-demo.js"></script>
-    <script src="<?= base_url();?>/js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="<?= base_url();?>/js/demo/chart-area-demo.js"></script>
+    <script src="<?= base_url();?>/js/demo/chart-pie-demo.js"></script> -->
+
+    <script>
+    
+          function updateProduk(id){
+                document.getElementById("staticBackdropLabel").innerHTML = 'UPDATE PRODUK';
+              $.ajax({
+                  url: "<?=base_url('getProduk');?>",
+                data: {id : id},
+                dataType : 'json',
+                method: 'post',
+                success: function(data) 
+                {
+                          console.log(data);
+                $("#idBarang").val(data.id_produk);
+                $("#namaBarang").val(data.nama_produk);
+                $("#hargaBarang").val(data.harga_produk);
+                $("#kategori").val(data.kategori_produk);
+                $("#gambar").val(data.img_produk);
+                $("#rating").val(data.rating_produk);
+
+                
+                var form = document.getElementById("formulir");
+                if(form){
+                    form.action = '/updateProduk';
+                }
+
+
+                        // console.log('data');
+                }
+              }); 
+          }
+    
+    // $(function(){
+    //    $('#update').on('click', function(){
+    //     $('#staticBackdropLabel').html('UPDATE');
+    //     const  id = $(this).data('data_id');
+    //                 console.log(id);
+
+    //     $.ajax({
+    //         url: "<?=base_url('getProduk');?>",
+    //         data: {id : id},
+    //         dataType: "json",
+    //         method: 'post',
+    //         success: function(response) 
+    //         {
+    //                     // console.log(data);
+    //                 console.log('data');
+    //         }
+    //         }); 
+    //   });
+    // });
+    
+    
+    
+    </script>
 
 </body>
 
