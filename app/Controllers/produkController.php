@@ -10,22 +10,46 @@ class produkController extends BaseController
     {
         $this->produkModel = new produkModel();
     }
+    public function validateProduk()
+    {   
+        if ($this->request->isAJAX()){
+            if(!$this->validate([
+                'nama_produk' => 'required',
+                'kategori_produk' => 'required',
+                'harga_produk' => 'required'
+                ])){
+                    $validation =  \Config\Services::validation();
+                    $errors = $validation->getErrors();
+
+                    echo json_encode($errors);
+                    // echo $errors;
+                }else{
+                    // echo json_encode([true]);
+
+                }
+        }else{
+            exit('tidak bisa akses');
+        }
+            
+       
+    }
+
     public function tambahProduk()
     {
-        // dd($this->request->getVar());
-        $data = [ 
+        // $id = $this->request->getVar('id_produk');
+        $data = [
             'nama_produk'=> $this->request->getVar('nama_produk') ,
             'harga_produk'=> $this->request->getVar('harga_produk') ,
             'img_produk'=> $this->request->getVar('gambar_produk') ,
             'kategori_produk'=> $this->request->getVar('kategori_produk') ,
-            'rating_produk'=> $this->request->getVar('rating_produk') 
+            'rating_produk'=> $this->request->getVar('rating_produk')
         ];
-        // dd($data);
-       $this->produkModel->save($data);
+        $this->produkModel->insert($id,$data);
         return redirect()->to('adminToko');
+        
     }
 
-    public function hapusProduk($id)
+      public function hapusProduk($id)
     {
         // dd($id);
         $this->produkModel->where('id_produk',$id)->delete();

@@ -11,9 +11,16 @@ class adminController extends BaseController
     }
     public function adminToko()
     {
+        session();
         $dataBarang = new produkModel();
-        $data = $dataBarang->get_data_all();
-        return view('admin/adminToko', compact('data'));
+        // $data = $dataBarang->get_data_all();
+        $data = [
+            'title' => 'DATA PRODUK',
+            'data_produk' => $dataBarang->get_data_all(),
+            'validation' => \Config\Services::validation(),
+        ];
+        // dd($data);
+        return view('admin/adminToko', $data);
 
     }
     public function getProduk()

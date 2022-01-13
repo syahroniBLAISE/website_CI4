@@ -41,6 +41,8 @@ $routes->get('/admin', 'adminController::index');
 $routes->delete('/hapusProduk/(:num)', 'produkController::hapusProduk/$1');
 $routes->post('/getProduk', 'produkController::getProduk');
 $routes->post('/updateProduk', 'produkController::updateProduk');
+$routes->post('/tambahProduk', 'produkController::tambahProduk');
+$routes->get('/validateProduk', 'produkController::validateProduk');
 // $routes->get('/', 'loginController::index');
 
 /*

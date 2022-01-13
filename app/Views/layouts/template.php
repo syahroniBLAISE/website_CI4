@@ -120,7 +120,7 @@
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="<?= base_url();?>/adminController/adminToko">Pengelolaan Toko</a>
+                        <a class="collapse-item" href="<?= base_url();?>/adminToko">Pengelolaan Toko</a>
                     </div>
                 </div>
             </li>
@@ -449,10 +449,13 @@
 
     <script>
     
-          function updateProduk(id){
+          function updateProdukModal(id){
                 document.getElementById("staticBackdropLabel").innerHTML = 'UPDATE PRODUK';
+                var onclick = document.getElementById("tombol_modal");
+                onclick.setAttribute = ("onclick", "updateProduk()");
+                
               $.ajax({
-                  url: "<?=base_url('getProduk');?>",
+                url: "<?=base_url('getProduk');?>",
                 data: {id : id},
                 dataType : 'json',
                 method: 'post',
@@ -471,32 +474,76 @@
                 if(form){
                     form.action = '/updateProduk';
                 }
-
-
-                        // console.log('data');
                 }
               }); 
           }
-    
-    // $(function(){
-    //    $('#update').on('click', function(){
-    //     $('#staticBackdropLabel').html('UPDATE');
-    //     const  id = $(this).data('data_id');
-    //                 console.log(id);
 
-    //     $.ajax({
-    //         url: "<?=base_url('getProduk');?>",
-    //         data: {id : id},
-    //         dataType: "json",
-    //         method: 'post',
-    //         success: function(response) 
-    //         {
-    //                     // console.log(data);
-    //                 console.log('data');
-    //         }
-    //         }); 
-    //   });
-    // });
+          function updateProduk(){
+
+          }
+
+          function clearModal(){
+              
+                $("#idBarang").val('');
+                $("#namaBarang").val('');
+                $("#hargaBarang").val('');
+                $("#kategori").val('');
+                $("#gambar").val('');
+                $("#rating").val('');
+          }
+    
+        
+        function tambahProdukModal(){
+            
+            document.getElementById("staticBackdropLabel").innerHTML = 'TAMBAH PRODUK';
+            var click  = document.getElementById("tombol_modal");
+            click.setAttribute("onClick", 'tambahProduk()');
+            // var action = document.getElementById("formulir");
+            // action.action = '<?=base_url();?>/tambahProduk';
+            console.log('tambahProdukModal');
+            
+            
+        }
+        function tambahProduk(){
+            // console.log('ajax TAMBAH PRODUK');
+
+            $.ajax({
+                url: "<?=base_url('validateProduk');?>",
+                // data: {id : id},
+                // dataType : 'json',
+                method: 'get',
+                success: function(data) 
+                {
+                    console.log(data);
+                    const d = JSON.parse(data);
+                    console.log(d.nama_produk);
+
+                    $("#namaBarang").addClass('is-valid');
+                    $("#namaBarangError").text(d.nama_produk);
+                    $("#hargaBarang").addClass('is-invalid');
+                    $("#hargaBarangError").text(d.harga_produk);
+                    if(data==true){
+                        console.log(data);
+                        // $("#idBarang").val(data.id_produk);
+                        // $("#namaBarang").val(data.nama_produk);
+                        // $("#hargaBarang").val(data.harga_produk);
+                        // $("#kategori").val(data.kategori_produk);
+                        // $("#gambar").val(data.img_produk);
+                        // $("#rating").val(data.rating_produk);
+
+                        console.log('ajax succses');
+                        // var form = document.getElementById("formulir");
+                        // if(form){
+                        //     form.action = '/tambahProduk';
+                        // }
+                    }else{
+                        console.log('data not true');
+                    }
+
+                }
+              });
+        }
+
     
     
     

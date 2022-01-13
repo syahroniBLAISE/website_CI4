@@ -5,11 +5,13 @@ use App\models\produkModel;
 
 class  tokoController extends BaseController
 {
-    public function index(){
+    public function index(){       
         $dataBarang = new produkModel();
-        $data = $dataBarang->get_data_all();
+        $data =+ $dataBarang->get_data_all();
         return view('toko/produkToko', compact('data'));
     }
+
+    
 }
 
 
