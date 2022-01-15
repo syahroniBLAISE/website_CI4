@@ -501,6 +501,7 @@
                     {
                         // console.log(data);
                         if(data == true){
+                            $('.tabelBarang').html('');
                             ambilData();
                         }
                         
