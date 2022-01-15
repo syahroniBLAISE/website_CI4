@@ -482,6 +482,10 @@
 
           }
 
+          function ambilData(){
+
+          }
+
           function clearModal(){
               
                 $("#idBarang").val('');
@@ -506,39 +510,82 @@
         }
         function tambahProduk(){
             // console.log('ajax TAMBAH PRODUK');
+            var nama_produk = $("#namaBarang").val();
+            var harga_produk = $("#hargaBarang").val();
+            var kategori_produk = $("#kategoriBarang").val();
+            var img_produk = $("#imgBarang").val();
+            var rating_produk = $("#ratingBarang").val();
+
+            console.log(nama_produk);
 
             $.ajax({
-                url: "<?=base_url('validateProduk');?>",
-                // data: {id : id},
-                // dataType : 'json',
-                method: 'get',
+                url: "<?=base_url('tambahProduk');?>",
+                data: 'nama_produk='+nama_produk+'&harga_produk='+harga_produk+'&kategori_produk='+kategori_produk+'&rating_produk='+rating_produk+'&img_produk='+img_produk,
+                dataType : 'json',
+                type: 'post',
                 success: function(data) 
                 {
                     console.log(data);
-                    const d = JSON.parse(data);
-                    console.log(d.nama_produk);
+                    // console.log(Object.keys(data));
 
-                    $("#namaBarang").addClass('is-valid');
-                    $("#namaBarangError").text(d.nama_produk);
-                    $("#hargaBarang").addClass('is-invalid');
-                    $("#hargaBarangError").text(d.harga_produk);
-                    if(data==true){
-                        console.log(data);
-                        // $("#idBarang").val(data.id_produk);
-                        // $("#namaBarang").val(data.nama_produk);
-                        // $("#hargaBarang").val(data.harga_produk);
-                        // $("#kategori").val(data.kategori_produk);
-                        // $("#gambar").val(data.img_produk);
-                        // $("#rating").val(data.rating_produk);
-
-                        console.log('ajax succses');
-                        // var form = document.getElementById("formulir");
-                        // if(form){
-                        //     form.action = '/tambahProduk';
-                        // }
+                    if(data == true){
+                        clearModal();
+                        $("#staticBackdrop").removeClass('show');
+                        location.reload();
                     }else{
-                        console.log('data not true');
+
+                        Object.keys(data).forEach(function eachKey(key) { 
+                            console.log(key);
+                            
+                            switch(key){
+                                case 'nama_produk'  :
+                                    console.log('nama barang');
+                                    $("#namaBarang").addClass('is-invalid');
+                                    $("#namaBarangError").text(data.nama_produk);
+                                    return;
+                                case 'harga_produk' :
+                                    console.log('harga barang');
+                                    $("#hargaBarang").addClass('is-invalid');
+                                    $("#hargaBarangError").text(data.harga_produk);
+                                    return;
+                                case 'kategori_produk'  :
+                                    console.log('kategori produk');
+                                    $("#kategoriBarang").addClass('is-invalid');
+                                    $("#kategoriBarangError").text(data.kategori_produk);
+                                    return;
+                                case 'rating_produk' :
+                                    console.log('rating barang');
+                                    $("#ratingBarang").addClass('is-invalid');
+                                    $("#ratingBarangError").text(data.rating_produk);
+                                    return;
+                                default :
+                                    console.log('semua data error validation telah di periksa');
+        
+                            }
+    
+    
+                        });
                     }
+                    
+                    
+
+                    // if(data==true){
+                    //     console.log(data);
+                    //     // $("#idBarang").val(data.id_produk);
+                    //     // $("#namaBarang").val(data.nama_produk);
+                    //     // $("#hargaBarang").val(data.harga_produk);
+                    //     // $("#kategori").val(data.kategori_produk);
+                    //     // $("#gambar").val(data.img_produk);
+                    //     // $("#rating").val(data.rating_produk);
+
+                    //     console.log('ajax succses');
+                    //     // var form = document.getElementById("formulir");
+                    //     // if(form){
+                    //     //     form.action = '/tambahProduk';
+                    //     // }
+                    // }else{
+                    //     console.log('data not true');
+                    // }
 
                 }
               });

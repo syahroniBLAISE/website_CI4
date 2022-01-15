@@ -12,6 +12,12 @@ class produkController extends BaseController
     }
     public function validateProduk()
     {   
+        
+        
+    }
+    
+    public function tambahProduk()
+    {
         if ($this->request->isAJAX()){
             if(!$this->validate([
                 'nama_produk' => 'required',
@@ -20,32 +26,28 @@ class produkController extends BaseController
                 ])){
                     $validation =  \Config\Services::validation();
                     $errors = $validation->getErrors();
-
+    
                     echo json_encode($errors);
-                    // echo $errors;
+                    
                 }else{
-                    // echo json_encode([true]);
+                    
+                    $data = [
+                        'nama_produk'=> $this->request->getVar('nama_produk') ,
+                        'harga_produk'=> $this->request->getVar('harga_produk') ,
+                        'img_produk'=> $this->request->getVar('img_produk') ,
+                        'kategori_produk'=> $this->request->getVar('kategori_produk') ,
+                        'rating_produk'=> $this->request->getVar('rating_produk')
+                    ];
+                    $this->produkModel->insert($data);
+                    echo json_encode(true);
 
+                    // return redirect()->to('adminToko');
+    
                 }
         }else{
-            exit('tidak bisa akses');
+            exit('tidak bisa di akses');
         }
-            
        
-    }
-
-    public function tambahProduk()
-    {
-        // $id = $this->request->getVar('id_produk');
-        $data = [
-            'nama_produk'=> $this->request->getVar('nama_produk') ,
-            'harga_produk'=> $this->request->getVar('harga_produk') ,
-            'img_produk'=> $this->request->getVar('gambar_produk') ,
-            'kategori_produk'=> $this->request->getVar('kategori_produk') ,
-            'rating_produk'=> $this->request->getVar('rating_produk')
-        ];
-        $this->produkModel->insert($id,$data);
-        return redirect()->to('adminToko');
         
     }
 

@@ -29,7 +29,7 @@
           <td><?= $d['harga_produk'];?></td>
           <td><?= $d['img_produk'];?></td>
           <td>
-            <form action="/hapusProduk/<?= $d['id_produk'];?>"  method='POST' class='d-inline'>
+            <form action="<?= base_url('hapusProduk');?>/<?= $d['id_produk'];?>"  method='POST' class='d-inline'>
             <?= csrf_field(); ?>
               <input type="hidden" name='_method' value='DELETE'>
               <button type="submit" class="btn btn-danger btn-sm col-4" >DELET</button>
@@ -71,11 +71,21 @@
         </div>
         <div class="mb-3">
           <label for="kategori" class="form-label">KATEGORI</label>
-          <input  type="text"  class="form-control" name='kategori_produk' id="kategori">
+          <input  type="text"  class="form-control" name='kategori_produk' id="kategoriBarang">
+          <div class="" id="kategoriBarangError"></div>
+
         </div>
         <div class="mb-3">
           <label for="rating" class="form-label">RATING</label>
-          <input  type="text"  class="form-control" name='rating_produk' id="rating">
+          <input  type="text"  class="form-control" name='rating_produk' id="ratingBarang">
+          <div class="" id="ratingBarangError"></div>
+
+        </div>
+        <div class="mb-3">
+          <label for="img" class="form-label">img</label>
+          <input  type="text"  class="form-control" name='img_produk' id="imgBarang">
+          <div class="" id="imgBarangError"></div>
+
         </div>
         <!-- <div class="mb-3">
           <label for="gambar" class="form-label">Pilih Gambar</label>
