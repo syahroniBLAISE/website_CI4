@@ -120,7 +120,11 @@
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="<?= base_url();?>/adminToko">Pengelolaan Toko</a>
+                        <!-- <a class="collapse-item" href="<?= base_url();?>/adminToko">Pengelolaan Toko</a> -->
+                        <?php foreach($data_halaman as $halaman){?>
+                        <a class="collapse-item" href="<?= $halaman['url_halaman']?>"><?= $halaman['judul_halaman']?></a>
+                        <?php }?>
+                        
                     </div>
                 </div>
             </li>

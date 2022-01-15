@@ -48,7 +48,7 @@ class produkController extends BaseController
                         // dd($data);
                     $this->produkModel->insert($data);
                 }
-                
+                return redirect()->to('adminToko');
             }else{
                     echo 'gagal upload';
             }

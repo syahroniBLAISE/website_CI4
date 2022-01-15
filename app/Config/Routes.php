@@ -45,6 +45,11 @@ $routes->post('/updateProduk', 'produkController::updateProduk');
 $routes->post('/tambahProduk', 'produkController::tambahProduk');
 $routes->post('/validateProduk', 'produkController::validateProduk');
 $routes->post('/uploadCSV', 'produkController::uploadCSV');
+
+
+$routes->get('/kelolaHalaman', 'adminController::kelolaHalaman');
+
+
 // $routes->get('/', 'loginController::index');
 
 /*
