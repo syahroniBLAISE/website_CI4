@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title><?= $title?></title>
     <!-- Custom fonts for this template-->
     <link href="<?= base_url();?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -35,7 +35,7 @@
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">HALAMAN ADMIN</div>
             </a>
 
             <!-- Divider -->
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?= base_url();?>/admin>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -446,11 +446,19 @@
     <!-- Page level custom scripts -->
     <!-- <script src="<?= base_url();?>/js/demo/chart-area-demo.js"></script>
     <script src="<?= base_url();?>/js/demo/chart-pie-demo.js"></script> -->
+    <!-- <script src="<?= base_url();?>/js/adminToko.js"> -->
+
 
     <script>
-        $(document).ready(function(){
-            ambilData();
-        });
+    $(document).ready(function(){
+        
+            var adminTokoKontainer = $(".adminTokoKontainer").html();
+            
+            if(adminTokoKontainer){
+                console.log('data');
+                ambilData();
+            }
+     });   
 
           function ambilData(){
               $.ajax({
@@ -466,7 +474,7 @@
                         $('.tabelBarang').append(
                             `<tr>\n
                             <th scope='row'>`+i+`</th>\n
-                            <td>`+d.nama_produk+`</td>\n
+                            <td>`+d.nama_produk+`</td>\n 
                             <td>`+d.harga_produk+`</td>\n
                             <td>`+d.img_produk+`</td>\n
                             <td>\n
@@ -578,9 +586,9 @@
                 $("#idBarang").val('');
                 $("#namaBarang").val('');
                 $("#hargaBarang").val('');
-                $("#kategori").val('');
-                $("#gambar").val('');
-                $("#rating").val('');
+                $("#kategoriBarang").val('');
+                $("#imgBarang").val('');
+                $("#ratingBarang").val('');
           }
     
         
@@ -592,6 +600,7 @@
             // var action = document.getElementById("formulir");
             // action.action = '<?=base_url();?>/tambahProduk';
             console.log('tambahProdukModal');
+            clearModal();
             
             
         }
@@ -663,6 +672,8 @@
             });
 
         }
+
+    
 
     
     

@@ -15,12 +15,70 @@ class produkController extends BaseController
 
         echo json_encode($this->produkModel->get_data_all());
     }
-    public function validateProduk()
-    {   
-        
-        
+
+    public function uploadCSV(){
+        if(isset($_POST['upload'])){
+
+        // dd($_FILES);
+        $file = $this->request->getFile('csv');
+        $extensiFile = $file->guessExtension();
+
+        // dd($extensiFile);
+        if($extensiFile == 'csv'){
+            $file->move('img');
+            $namaFile = $file->getName();
+            $file_path = 'img/';
+
+            // if(file_exists($file_path.$namaFile){
+            //     $namaFile = $namaFile.
+            // }
+
+            if(file_exists($file_path.$namaFile)){
+                $open = fopen('img/'.$namaFile, 'r');
+                while(($row = fgetcsv($open, 1000, ';'))!== FALSE){
+        // dd($row);
+
+                    $data = [
+                            'nama_produk'=> $row[0],
+                            'harga_produk'=> $row[1],
+                            'img_produk'=> $row[2],
+                            'kategori_produk'=> $row[3],
+                            'rating_produk'=> $row[4]
+                        ];
+                        // dd($data);
+                    $this->produkModel->insert($data);
+                }
+                
+            }else{
+                    echo 'gagal upload';
+            }
+        }else{
+            echo 'bukan file csv';
+        }
+        }
+
+
+        // $uploads_dir = '/img';
+        // foreach($_FILES["csv"]["error"] as $key => $error) {
+        //     if ($error == UPLOAD_ERR_OK) {
+        //         $tmp_name = $_FILES["csv"]["tmp_name"][$key];
+        //         // basename() may prevent filesystem traversal attacks;
+        //         // further validation/sanitation of the filename may be appropriate
+        //         $name = basename($_FILES["csv"]["name"][$key]);
+        //         move_uploaded_file($tmp_name, "$uploads_dir/$name");
+        //     }
+        // }
+
+
+
+            // $file = $this->request->getFile('csv');
+            // $file->move('img');
+            // $namaFile = $file->getName();
+
+
+
     }
-    
+ 
     public function tambahProduk()
     {
         if ($this->request->isAJAX()){
