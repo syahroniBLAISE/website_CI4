@@ -448,12 +448,71 @@
     <script src="<?= base_url();?>/js/demo/chart-pie-demo.js"></script> -->
 
     <script>
-    
+        $(document).ready(function(){
+            ambilData();
+        });
+
+          function ambilData(){
+              $.ajax({
+                url: "<?=base_url('getProdukAll');?>",
+                dataType : 'json',
+                method: 'get',
+                success: function(data) 
+                {
+                    console.log(data);
+                    var i = 1;
+                    data.forEach(function(d){
+                        console.log(d.nama_produk);
+                        $('.tabelBarang').append(
+                            `<tr>\n
+                            <th scope='row'>`+i+`</th>\n
+                            <td>`+d.nama_produk+`</td>\n
+                            <td>`+d.harga_produk+`</td>\n
+                            <td>`+d.img_produk+`</td>\n
+                            <td>\n
+                                <form action='<?= base_url('hapusProduk');?>/`+d.id_produk+`'  method='POST' class='d-inline'>\n
+                                <?= csrf_field(); ?>\n
+                                <input type='hidden' name='_method' value='DELETE'>\n
+                                <a type='button' class='btn btn-danger btn-sm col-4' onclick='deletProduk(`+d.id_produk+`)' >DELET</a>\n
+                                </form>\n
+                                <a type='button' class='btn btn-primary btn-sm col-3' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(`+d.id_produk+`)' id='update'>EDIT</a>\n
+                            </td>\n
+                            </tr>`
+                        );
+                        i++;
+                    });
+
+                }
+
+              }); 
+          }
+          function deletProduk(id){
+              console.log('delet produk'+id);
+
+              var id_produk = id;
+                console.log('data yang diterima updateProduk('+id_produk+')');
+
+                $.ajax({
+                    url: "<?=base_url('hapusProduk/');?>",
+                    data: 'id_produk='+id_produk,
+                    dataType : 'json',
+                    type: 'post',
+                    success: function(data) 
+                    {
+                        // console.log(data);
+                        if(data == true){
+                            ambilData();
+                        }
+                        
+                        
+                    }
+                });
+          }
           function updateProdukModal(id){
                 document.getElementById("staticBackdropLabel").innerHTML = 'UPDATE PRODUK';
                 var onclick = document.getElementById("tombol_modal");
-                onclick.setAttribute = ("onclick", "updateProduk()");
-                
+                onclick.setAttribute("onClick", "updateProduk("+id+")");
+     
               $.ajax({
                 url: "<?=base_url('getProduk');?>",
                 data: {id : id},
@@ -465,26 +524,53 @@
                 $("#idBarang").val(data.id_produk);
                 $("#namaBarang").val(data.nama_produk);
                 $("#hargaBarang").val(data.harga_produk);
-                $("#kategori").val(data.kategori_produk);
-                $("#gambar").val(data.img_produk);
-                $("#rating").val(data.rating_produk);
+                $("#kategoriBarang").val(data.kategori_produk);
+                $("#imgBarang").val(data.img_produk);
+                $("#ratingBarang").val(data.rating_produk);
 
                 
-                var form = document.getElementById("formulir");
-                if(form){
-                    form.action = '/updateProduk';
-                }
+                
                 }
               }); 
           }
 
-          function updateProduk(){
+          function updateProduk(id){
+           
 
-          }
+                var id_produk = id;
+                var nama_produk = $("#namaBarang").val();
+                var harga_produk = $("#hargaBarang").val();
+                var kategori_produk = $("#kategoriBarang").val();
+                var img_produk = $("#imgBarang").val();
+                var rating_produk = $("#ratingBarang").val();
 
-          function ambilData(){
+                console.log('data yang diterima updateProduk('+id_produk+')');
 
-          }
+                $.ajax({
+                    url: "<?=base_url('updateProduk/');?>",
+                    data: 'id_produk='+id_produk+'&nama_produk='+nama_produk+'&harga_produk='+harga_produk+'&kategori_produk='+kategori_produk+'&rating_produk='+rating_produk+'&img_produk='+img_produk,
+                    dataType : 'json',
+                    type: 'post',
+                    success: function(data) 
+                    {
+                        console.log(data);
+                        // console.log(Object.keys(data));
+
+                        if(data == true){
+                            clearModal();
+                            $("#staticBackdrop").removeClass('show');
+                            location.reload();
+                        }else{
+                            responDataError(data);
+                        }
+                        
+                        
+                    }
+                });
+
+          
+
+            }
 
           function clearModal(){
               
@@ -516,7 +602,7 @@
             var img_produk = $("#imgBarang").val();
             var rating_produk = $("#ratingBarang").val();
 
-            console.log(nama_produk);
+            console.log('data yang diterima tamabahProduk()'+nama_produk);
 
             $.ajax({
                 url: "<?=base_url('tambahProduk');?>",
@@ -533,62 +619,48 @@
                         $("#staticBackdrop").removeClass('show');
                         location.reload();
                     }else{
-
-                        Object.keys(data).forEach(function eachKey(key) { 
-                            console.log(key);
-                            
-                            switch(key){
-                                case 'nama_produk'  :
-                                    console.log('nama barang');
-                                    $("#namaBarang").addClass('is-invalid');
-                                    $("#namaBarangError").text(data.nama_produk);
-                                    return;
-                                case 'harga_produk' :
-                                    console.log('harga barang');
-                                    $("#hargaBarang").addClass('is-invalid');
-                                    $("#hargaBarangError").text(data.harga_produk);
-                                    return;
-                                case 'kategori_produk'  :
-                                    console.log('kategori produk');
-                                    $("#kategoriBarang").addClass('is-invalid');
-                                    $("#kategoriBarangError").text(data.kategori_produk);
-                                    return;
-                                case 'rating_produk' :
-                                    console.log('rating barang');
-                                    $("#ratingBarang").addClass('is-invalid');
-                                    $("#ratingBarangError").text(data.rating_produk);
-                                    return;
-                                default :
-                                    console.log('semua data error validation telah di periksa');
-        
-                            }
-    
-    
-                        });
+                        responDataError(data);
                     }
                     
                     
-
-                    // if(data==true){
-                    //     console.log(data);
-                    //     // $("#idBarang").val(data.id_produk);
-                    //     // $("#namaBarang").val(data.nama_produk);
-                    //     // $("#hargaBarang").val(data.harga_produk);
-                    //     // $("#kategori").val(data.kategori_produk);
-                    //     // $("#gambar").val(data.img_produk);
-                    //     // $("#rating").val(data.rating_produk);
-
-                    //     console.log('ajax succses');
-                    //     // var form = document.getElementById("formulir");
-                    //     // if(form){
-                    //     //     form.action = '/tambahProduk';
-                    //     // }
-                    // }else{
-                    //     console.log('data not true');
-                    // }
-
                 }
-              });
+            });
+        }
+        
+        function responDataError(data){
+
+            Object.keys(data).forEach(function eachKey(key) { 
+                console.log(key);
+                
+                switch(key){
+                    case 'nama_produk'  :
+                        console.log('nama barang');
+                        $("#namaBarang").addClass('is-invalid');
+                        $("#namaBarangError").text(data.nama_produk);
+                        return;
+                    case 'harga_produk' :
+                        console.log('harga barang');
+                        $("#hargaBarang").addClass('is-invalid');
+                        $("#hargaBarangError").text(data.harga_produk);
+                        return;
+                    case 'kategori_produk'  :
+                        console.log('kategori produk');
+                        $("#kategoriBarang").addClass('is-invalid');
+                        $("#kategoriBarangError").text(data.kategori_produk);
+                        return;
+                    case 'rating_produk' :
+                        console.log('rating barang');
+                        $("#ratingBarang").addClass('is-invalid');
+                        $("#ratingBarangError").text(data.rating_produk);
+                        return;
+                    default :
+                        console.log('semua data error validation telah di periksa');
+    
+                }
+    
+    
+            });
+
         }
 
     

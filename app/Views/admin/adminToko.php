@@ -21,25 +21,10 @@
           <th scope="col">SETING</th>
         </tr>
       </thead>
-      <tbody>
-          <?php $i=1; foreach($data_produk as $d){ ?>
-        <tr>
-          <th scope="row"><?=$i;?></th>
-          <td><?= $d['nama_produk'];?></td>
-          <td><?= $d['harga_produk'];?></td>
-          <td><?= $d['img_produk'];?></td>
-          <td>
-            <form action="<?= base_url('hapusProduk');?>/<?= $d['id_produk'];?>"  method='POST' class='d-inline'>
-            <?= csrf_field(); ?>
-              <input type="hidden" name='_method' value='DELETE'>
-              <button type="submit" class="btn btn-danger btn-sm col-4" >DELET</button>
-            </form>
-              <a type="button" class="btn btn-primary btn-sm col-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="updateProdukModal(<?= $d['id_produk'];?>)" id="update">EDIT</a>
+      <tbody  class="tabelBarang">
 
-              <!-- <a type="button" class="btn btn-primary btn-sm col-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data_id="2" id="update">EDIT</a> -->
-          </td>
         </tr>
-        <?php $i++; }?>
+
       </tbody>
     </table>
   </div>
