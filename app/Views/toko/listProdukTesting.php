@@ -69,7 +69,7 @@
                       foreach($cart as $listCart){ ?>
                       <li><button class="dropdown-item" type="button"> <?= $listCart['name']. ' jumlah '  .$listCart['qty']. ' harga =' .$listCart['price']?> </button></li>                            
                       <?php $i= $i + 1; }?>
-                      <li><button class="dropdown-item" type="button" > CLEAR CART</button></li> 
+                      <li><a class="dropdown-item" type="button" href="<?= base_url('produkController/clearCart');?>"> CLEAR CART</a></li> 
                   </ul>
                 </div>
               </form>

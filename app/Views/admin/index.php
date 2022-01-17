@@ -20,9 +20,23 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Earnings (Monthly)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">JUMLAH KUNJUNGAN</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?php 
+                            require_once(APPPATH.'libraries/kunjunganCounter.php');
+                            $hit = new kunjunganCounter();
+                            $hit->Hitung();
+ 
+                            //tampilkan counter
+                            echo 'jumlah pengunjung :' . $hit->tampil();
+                            
+                            //tampilkan history jika ada
+                            $h = $hit->waktu();
+                            if (!empty($h)) {
+                                echo '<br>Tgl Kunjungan : ' . $h;
+                            }
+                            ?>
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>

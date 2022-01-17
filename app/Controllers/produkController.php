@@ -166,6 +166,13 @@ class produkController extends BaseController
         $data = $cart->contents();
         dd($data);
     }
+
+    public function clearCart(){
+        $cart = \Config\Services::cart();
+        $cart->destroy();
+        return redirect()->to(base_url());
+
+    }
     
 }
 
