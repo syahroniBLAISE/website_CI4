@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Shop Homepage - Start Bootstrap Template</title>
+        <title><?php echo $title; ?></title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="<?= base_url();?>/assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -17,7 +17,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                <a class="navbar-brand" href="#!">PARTNERSABLON.COM</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -34,11 +34,24 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-dark" type="submit" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi-cart-fill me-1"></i>
+                                Cart
+                                <span class="badge bg-dark text-white ms-1 rounded-pill">
+
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <?php 
+                                $cart = $cart->contents();
+                                $i = 0;
+                                foreach($cart as $listCart){ ?>
+                                <li><button class="dropdown-item" type="button"> <?= $listCart['name']. ' jumlah '  .$listCart['qty']. ' harga =' .$listCart['price']?> </button></li>                            
+                                <?php $i= $i + 1; }?>
+                                <li><button class="dropdown-item" type="button" onclick="$cart->destroy();"> CLEAR CART</button></li> 
+                            </ul>
+                            </div>
                     </form>
                 </div>
             </div>
@@ -62,32 +75,44 @@
                     ?>
 
                     <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="<?= base_url();?><?= $d['img_produk'];?>" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><?= $d['nama_produk'];?></h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <?php for ($i=0; $i<$d['rating_produk']; $i++){?>
-                                            <div class="bi-star-fill"></div>
-                                        <?php }?>
+                        <?php
+                            helper('form'); 
+                            echo form_open('produkController/cart');
+                            echo form_hidden('id_produk', $d['id_produk']);
+                            echo form_hidden('qty', 1);
+                            echo form_hidden('harga_produk', $d['harga_produk']);
+                            echo form_hidden('nama_produk', $d['nama_produk']);
+                            echo form_hidden('img_produk', $d['img_produk']);
+                        ?>
+                        
+                            <div class="/card h-100">
+                                <!-- Sale badge-->
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                <!-- Product image-->
+                                <img class="card-img-top" src="<?= base_url();?><?= $d['img_produk'];?>" alt="..." />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder"><?= $d['nama_produk'];?></h5>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <?php for ($i=0; $i<$d['rating_produk']; $i++){?>
+                                                <div class="bi-star-fill"></div>
+                                            <?php }?>
+                                        </div>
+                                        <!-- Product price-->
+                                        <span class="text-muted text-decoration-line-through">$20.00</span>
+                                        <?= $d['harga_produk'];?>
                                     </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    <?= $d['harga_produk'];?>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><button type="submit" class="btn btn-outline-dark mt-auto" >Add to cart</button></div>
                                 </div>
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
+
+                        <?php echo form_close();?>
                     </div>
 
                     <?php 

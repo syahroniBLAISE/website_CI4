@@ -14,13 +14,13 @@ class adminController extends BaseController
     }
     public function index()
     {
-        $data = [
-            'title' => 'HALAMAN ADMIN UTAMA',
-            // 'data_produk' => $this->dataBarang->get_data_all(),
-            'data_halaman' => $this->dataHalaman->get_data_all()
-            // 'validation' => \Config\Services::validation(),
-        ];
-        return view('admin/index', $data);
+        // $data = [
+        //     'title' => 'HALAMAN ADMIN UTAMA',
+        //     // 'data_produk' => $this->dataBarang->get_data_all(),
+        //     'data_halaman' => $this->dataHalaman->get_data_all()
+        //     // 'validation' => \Config\Services::validation(),
+        // ];
+        // return view('admin/index', $data);
     }
     public function adminToko()
     {

@@ -19,24 +19,18 @@ class produkController extends BaseController
     public function uploadCSV(){
         if(isset($_POST['upload'])){
 
-        // dd($_FILES);
         $file = $this->request->getFile('csv');
         $extensiFile = $file->guessExtension();
-
-        // dd($extensiFile);
         if($extensiFile == 'csv'){
             $file->move('img');
             $namaFile = $file->getName();
             $file_path = 'img/';
 
-            // if(file_exists($file_path.$namaFile){
-            //     $namaFile = $namaFile.
-            // }
+
 
             if(file_exists($file_path.$namaFile)){
                 $open = fopen('img/'.$namaFile, 'r');
                 while(($row = fgetcsv($open, 1000, ';'))!== FALSE){
-        // dd($row);
 
                     $data = [
                             'nama_produk'=> $row[0],
@@ -45,7 +39,6 @@ class produkController extends BaseController
                             'kategori_produk'=> $row[3],
                             'rating_produk'=> $row[4]
                         ];
-                        // dd($data);
                     $this->produkModel->insert($data);
                 }
                 return redirect()->to('adminToko');
@@ -56,26 +49,6 @@ class produkController extends BaseController
             echo 'bukan file csv';
         }
         }
-
-
-        // $uploads_dir = '/img';
-        // foreach($_FILES["csv"]["error"] as $key => $error) {
-        //     if ($error == UPLOAD_ERR_OK) {
-        //         $tmp_name = $_FILES["csv"]["tmp_name"][$key];
-        //         // basename() may prevent filesystem traversal attacks;
-        //         // further validation/sanitation of the filename may be appropriate
-        //         $name = basename($_FILES["csv"]["name"][$key]);
-        //         move_uploaded_file($tmp_name, "$uploads_dir/$name");
-        //     }
-        // }
-
-
-
-            // $file = $this->request->getFile('csv');
-            // $file->move('img');
-            // $namaFile = $file->getName();
-
-
 
     }
  
@@ -103,8 +76,6 @@ class produkController extends BaseController
                     ];
                     $this->produkModel->insert($data);
                     echo json_encode(true);
-
-                    // return redirect()->to('adminToko');
     
                 }
         }else{
@@ -116,7 +87,6 @@ class produkController extends BaseController
 
       public function hapusProduk()
     {
-        // dd($id);
         $id = $this->request->getVar('id_produk');
         $this->produkModel->where('id_produk',$id)->delete();
         echo json_encode(true);
@@ -127,9 +97,7 @@ class produkController extends BaseController
     {
         if ($this->request->isAJAX()){
             $id = $_POST['id'];
-            // echo 'ok';
             $data = json_encode($this->produkModel->find($id));
-            
             echo $data;
 
         }else{
@@ -138,19 +106,6 @@ class produkController extends BaseController
     }
     public function updateProduk()
     {
-        // $id = $this->request->getVar('id_produk');
-        // $data = [
-        //     'nama_produk'=> $this->request->getVar('nama_produk') ,
-        //     'harga_produk'=> $this->request->getVar('harga_produk') ,
-        //     'img_produk'=> $this->request->getVar('gambar_produk') ,
-        //     'kategori_produk'=> $this->request->getVar('kategori_produk') ,
-        //     'rating_produk'=> $this->request->getVar('rating_produk')
-        // ];
-        // $this->produkModel->update($id,$data);
-        // // return redirect()->to('adminToko');
-        // echo $data;
-
-
 
         if ($this->request->isAJAX()){
             if(!$this->validate([
@@ -181,6 +136,37 @@ class produkController extends BaseController
         }
         
     }
+
+    public function cart(){
+        $cart = \Config\Services::cart();
+        // $data = ['nama' => $this->request->getVar('nama_produk')];
+        // dd($data);
+        $cart->insert(array(
+            'id'      => $this->request->getVar('id_produk'),
+            'qty'     => $this->request->getVar('qty'),
+            'price'   => $this->request->getVar('harga_produk'),
+            'name'    => $this->request->getVar('nama_produk') ,
+            'options' => array('img_produk' => $this->request->getVar('img_produk'))
+            ));
+
+        // $data = json_encode($cart->contents()) ;
+        // $cart->destroy();
+        // // $data = count($data);
+        // dd($data);
+        // echo($data);
+        // echo'<prev>';
+        // print_r($data);
+        // echo'</prev>';
+        // sesion()->setFlasData('pesan' ,'produk berhasil di tambahkan ke keranjang');
+        return redirect()->to(base_url());
+    }
+
+    public function cek(){
+        $cart = \Config\Services::cart();
+        $data = $cart->contents();
+        dd($data);
+    }
+    
 }
 
 
