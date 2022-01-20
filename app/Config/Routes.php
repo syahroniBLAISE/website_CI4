@@ -33,8 +33,11 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'tokoController::index');
+$routes->get('/kaos', 'tokoController::kaos');
+$routes->get('/konveksi', 'tokoController::konveksi');
 // $routes->get('/', 'loginController::index');
 $routes->get('/admin', 'loginController::login_action');
+$routes->get('/adminKaos', 'adminController::adminKaos');
 $routes->get('/toko', 'tokoController::index');
 $routes->get('/produk', 'produkController::index');
 $routes->get('/adminToko', 'adminController::adminToko');
@@ -48,6 +51,7 @@ $routes->post('/validateProduk', 'produkController::validateProduk');
 $routes->post('/uploadCSV', 'produkController::uploadCSV');
 $routes->get('/shoping', 'halamanShopingController::index');
 $routes->get('/cart', 'produkController::cart');
+$routes->get('/toko/galery', 'tokoController::galery');
 
 
 $routes->get('/kelolaHalaman', 'adminController::kelolaHalaman');

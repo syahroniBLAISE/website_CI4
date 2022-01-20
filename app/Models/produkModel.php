@@ -14,6 +14,7 @@ class produkModel extends Model
     {
         return $this->findAll();
     }
+
 //     public function save_data($data)
 //     {
         

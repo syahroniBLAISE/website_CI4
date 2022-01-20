@@ -49,9 +49,9 @@
                                 foreach($cart as $listCart){ ?>
                                 <li><button class="dropdown-item" type="button"> <?= $listCart['name']. ' jumlah '  .$listCart['qty']. ' harga =' .$listCart['price']?> </button></li>                            
                                 <?php $i= $i + 1; }?>
-                                <li><button class="dropdown-item" type="button" onclick="$cart->destroy();"> CLEAR CART</button></li> 
+                                <li><button class="dropdown-item" type="button" > CLEAR CART</button></li> 
                             </ul>
-                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

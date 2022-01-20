@@ -25,7 +25,6 @@
                             <?php 
                             require_once(APPPATH.'libraries/kunjunganCounter.php');
                             $hit = new kunjunganCounter();
-                            $hit->Hitung();
  
                             //tampilkan counter
                             echo 'jumlah pengunjung :' . $hit->tampil();

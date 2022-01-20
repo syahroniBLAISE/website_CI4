@@ -33,6 +33,11 @@
   </head>
 
   <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <?php 
+    require_once(APPPATH.'libraries/kunjunganCounter.php');
+    $hit = new kunjunganCounter();
+    $hit->Hitung();
+    ?>
     <!-- Navigation
       ==========================================-->
     <nav id="menu" class="navbar navbar-default navbar-fixed-top">

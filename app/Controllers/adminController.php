@@ -10,6 +10,7 @@ class adminController extends BaseController
     {
         $dataBarang = new produkModel();
         $dataHalaman = new halamanModel();
+        // $kaosModel = new kaosModel();
         
     }
     public function index()
@@ -26,17 +27,36 @@ class adminController extends BaseController
     {
         // session();
         // $data = $dataBarang->get_data_all();
-        $dataBarang = new produkModel();
+        $dataModel = new produkModel();
         $dataHalaman = new halamanModel();
+        // $kaosModel = new kaosModel();
         
         $data = [
             'title' => 'HALAMAN ADMIN TOKO',
-            'data_produk' => $dataBarang->get_data_all(),
+            'data_kaos' => $dataModel->get_data_all(),
             'data_halaman' => $dataHalaman->get_data_all(),
             'validation' => \Config\Services::validation(),
         ];
         // dd($data);
         return view('admin/adminToko', $data);
+
+    }
+
+    public function adminKaos()
+    {
+        // session();
+        // $data = $dataBarang->get_data_all();
+        $dataBarang = new produkModel();
+        $dataHalaman = new halamanModel();
+        
+        $data = [
+            'title' => 'HALAMAN ADMIN KAOS',
+            'data_produk' => $dataBarang->get_data_all(),
+            'data_halaman' => $dataHalaman->get_data_all(),
+            'validation' => \Config\Services::validation(),
+        ];
+        // dd($data);
+        return view('admin/kelolaKaos', $data);
 
     }
 

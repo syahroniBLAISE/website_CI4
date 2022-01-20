@@ -5,6 +5,9 @@
 
 <!--  -->
 <!-- awal content -->
+<div id='base_url'visibility: hidden>
+  <?= base_url();?>
+</div>
 <div class="container adminTokoKontainer">
   <div class="row">
     <div class="col-3">

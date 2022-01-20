@@ -1,7 +1,8 @@
 <?php namespace App\Controllers;
 
-use App\Models\loginModel;
+// use App\Models\loginModel;
 use App\Models\halamanModel;
+// use App\libraries\kunjunganCounter;
 
 class loginController extends BaseController
 {
@@ -9,6 +10,8 @@ class loginController extends BaseController
    public function __construct()
    {
        $this->dataHalaman = new halamanModel();
+      //  $this->load->library('kunjunganCounter');
+      // require_once(APPPATH.'libraries/kunjunganCounter.php');
       
    }
 	public function index()
@@ -18,19 +21,17 @@ class loginController extends BaseController
    
    public function login_action() 
    {
-     $userLogin = true;
+
+      $userLogin = true;
       if($userLogin == true)
       {  $data = [
             'title' => 'HALAMAN ADMIN UTAMA',
-            'data_halaman' => $this->dataHalaman->get_data_all()
-            
+            'data_halaman' => $this->dataHalaman->get_data_all()               
         ];
          return view('admin/index', $data);
       }else{
          return view('login');
       }
    }
-
-	//--------------------------------------------------------------------
 
 }
