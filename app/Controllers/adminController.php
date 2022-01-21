@@ -41,6 +41,7 @@ class adminController extends BaseController
         return view('admin/adminToko', $data);
 
     }
+    
 
     public function adminKaos()
     {

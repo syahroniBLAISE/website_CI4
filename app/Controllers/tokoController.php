@@ -2,12 +2,14 @@
 namespace App\Controllers;
 
 use App\models\produkModel;
+use App\models\kaosModel;
 
 class  tokoController extends BaseController
 {   
     protected $produkMode;
+    protected $kaosModel;
+    
     public function __construct(){
-        // $this->cart = new \Config\Services::cart();
         $this->produkModel = new produkModel();
         $this->kaosModel = new kaosModel();
     }
@@ -25,7 +27,7 @@ class  tokoController extends BaseController
         session();                         
         $data = [
             'title' => 'KAOS KOZE',
-            // 'data' => $this->kaosModel->get_data_all(),
+            'kaos' => $this->kaosModel->get_data_all(),
             'cart' =>  \Config\Services::cart()
         ];
 

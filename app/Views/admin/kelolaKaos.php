@@ -2,7 +2,9 @@
 
 <?= $this->section('content')?>
 <!--  -->
-
+<div class='base_url' visibility: hidden>
+  <?= base_url();?>
+</div>
 <!--  -->
 <!-- awal content -->
 <div class="container adminTokoKontainer">
@@ -66,15 +68,21 @@
 
         </div>
         <div class="mb-3">
-          <label for="rating" class="form-label">RATING</label>
-          <input  type="text"  class="form-control" name='waktu_update' id="ratingBarang">
-          <div class="" id="ratingBarangError"></div>
+          <label for="warnaBarang" class="form-label">WARNA</label>
+          <input  type="text"  class="form-control" name='warnaBarang' id="warnaBarang">
+          <div class="" id="warnaBarangError"></div>
+
+        </div>
+                <div class="mb-3">
+          <label for="gambarBarang" class="form-label">GAMBAR</label>
+          <input  type="text"  class="form-control" name='gambarBarang' id="gambarBarang">
+          <div class="" id="gambarBarangError"></div>
 
         </div>
         <div class="mb-3">
-          <label for="img" class="form-label">img</label>
-          <input  type="text"  class="form-control" name='gambar_kaos' id="imgBarang">
-          <div class="" id="imgBarangError"></div>
+          <label for="thumbnailBarang" class="form-label">THUMBNAIL</label>
+          <input  type="text"  class="form-control" name='gambar_kaos' id="thumbnailBarang">
+          <div class="" id="thumbnailBarangError"></div>
 
         </div>
         <!-- <div class="mb-3">
@@ -104,7 +112,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form action='/uploadCSV' method='POST' id='formulir' enctype="multipart/form-data">
+       <form action='/uploadCSVKaos' method='POST' id='formulir' enctype="multipart/form-data">
     
         <div class="mb-3">
           <label for="csv" class="form-label">Pilih File</label>

@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 function ambilData(base_url) {
   $.ajax({
-    url: `${base_url}/getProdukAll`,
+    url: `${base_url}/getKaosAll`,
     dataType: "json",
     method: "get",
     success: function (data) {
@@ -21,19 +21,19 @@ function ambilData(base_url) {
       var base_url = "url";
       var i = 1;
       data.forEach(function (d) {
-        console.log(d.nama_produk);
+        console.log(d.nama_kaos);
         $(".tabelBarang").append(
           `<tr>\n
                             <th scope='row'>${i}</th>\n
-                            <td>${d.nama_produk}</td>\n 
-                            <td>${d.harga_produk}</td>\n
-                            <td>${d.img_produk}</td>\n
-                            <td><form action='${base_url}${d.id_produk}'  method='POST' class='d-inline'>\n
+                            <td>${d.nama_kaos}</td>\n 
+                            <td>${d.harga_kaos}</td>\n
+                            <td>${d.gambar_kaos}</td>\n
+                            <td><form action='${base_url}${d.id_kaos}'  method='POST' class='d-inline'>\n
                                 <?= csrf_field(); ?>\n
                                 <input type='hidden' name='_method' value='DELETE'>\n
-                                <a type='button' class='btn btn-danger btn-sm col-4' onclick='deletProduk(${d.id_produk})' >DELET</a>\n
+                                <a type='button' class='btn btn-danger btn-sm col-4' onclick='deletProduk(${d.id_kaos})' >DELET</a>\n
                                 </form>\n
-                                <a type='button' class='btn btn-primary btn-sm col-3' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(${d.id_produk})' id='update'>EDIT</a>\n
+                                <a type='button' class='btn btn-primary btn-sm col-3' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(${d.id_kaos})' id='update'>EDIT</a>\n
                             </td>\n
                             </tr>`
         );
@@ -45,12 +45,12 @@ function ambilData(base_url) {
 function deletProduk(id) {
   console.log("delet produk" + id);
 
-  var id_produk = id;
-  console.log("data yang diterima updateProduk(" + id_produk + ")");
+  //   var id_produk = id;
+  console.log("data yang diterima updateProduk(" + id + ")");
   var base_url = $(".base_url").html();
   $.ajax({
-    url: `${base_url}/hapusProduk`,
-    data: "id_produk=" + id_produk,
+    url: `${base_url}/hapusKaos`,
+    data: { id_kaos: id },
     dataType: "json",
     type: "post",
     success: function (data) {

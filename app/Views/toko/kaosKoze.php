@@ -39,14 +39,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-<!--           <li><a href="<?= base_Url(); ?>/atributToko2/#about" class="page-scroll">About</a></li>
-          <li><a href="<?= base_Url(); ?>/atributToko2/#services" class="page-scroll">Services</a></li> -->
-          <li><a href="<?= base_Url(); ?>/atributToko2/https://partnersablon.com" target="_blank" class="page-scroll">HOME</a></li>
-          <li><a href="<?= base_Url(); ?>/atributToko2/https://partnersablon.com/kaos" target="_blank" class="page-scroll">KAOS</a></li>
-          <li><a href="<?= base_Url(); ?>/atributToko2/#portfolio" class="page-scroll">Gallery</a></li>
-          <!-- <li><a href="<?= base_Url(); ?>/atributToko2/#testimonials" class="page-scroll">Artikel</a></li> -->
-          
-          <li><a href="<?= base_Url(); ?>/atributToko2/#contact" class="page-scroll">Contact</a></li>
+          <li><a href="<?= base_Url(); ?>" target="_blank" class="page-scroll">HOME</a></li>
+          <li><a href="<?= base_Url(); ?>/admin" target="_blank" class="page-scroll">lOGIN ADMIN</a></li>
         </ul>
       </div>
       <!-- /.navbar-collapse -->
@@ -99,286 +93,23 @@
 
           <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 
-          <?php 
-// for( $i = 1; $i <= 24; $i++ ) :?>
+          <?php foreach($kaos as $k){ ?>
 
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-1.jp2" title="Coklat" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Coklat</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-1.jp2" class="img-responsive" alt="Coklat">
-                </a></div>
+            <div class="col-sm-6 col-md-4 <?= $k['kategori_kaos']; ?>">
+              <div class="portfolio-item">
+                <div class="hover-bg"> <a href="<?= base_Url(); ?><?= $k['thumbnail_kaos']; ?> " title="Coklat" data-lightbox-gallery="gallery1">
+                    <div class="hover-text">
+                      <h4><?= $k['nama_kaos'];?></h4>
+                    </div>
+                    <img src="<?= base_Url(); ?><?= $k['gambar_kaos']; ?> " class="img-responsive" alt="Coklat">
+                  </a></div>
+              </div>
             </div>
-          </div>
+          
+          <?php }?>
+        
 
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-2.jp2" title="Grey" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Grey</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-2.jp2" class="img-responsive" alt="Grey">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-3.jp2" title="Hijau" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Hijau</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-3.jp2" class="img-responsive" alt="Hijau">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-4.jp2" title="Hitam" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Hitam</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-4.jp2" class="img-responsive" alt="Hitam">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-5.jp2" title="Merah Maron"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Merah Maron</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-5.jp2" class="img-responsive" alt="Merah Maron">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-6.jp2" title="Navy" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Navy</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-6.jp2" class="img-responsive" alt="Navy">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-7.jp2" title="Kuning Neon"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Kuning Neon</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-7.jp2" class="img-responsive" alt="Kuning Neon">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-8.jp2" title="Orange" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Orange</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-8.jp2" class="img-responsive" alt="Orange">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-9.jp2" title="Pink" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Pink</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-9.jp2" class="img-responsive" alt="Pink">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-10.jp2" title="Putih" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Putih</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-10.jp2" class="img-responsive" alt="Putih">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-11.jp2" title="Merah" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Merah</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-11.jp2" class="img-responsive" alt="Merah">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-12.jp2" title="Royal Blue"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Royal Blue</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-12.jp2" class="img-responsive" alt="Royal Blue">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-13.jp2" title="Sky Blue"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Sky Blue</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-13.jp2" class="img-responsive" alt="Sky Blue">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-14.jp2" title="Tosca" data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Tosca</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-14.jp2" class="img-responsive" alt="Tosca">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-15.jp2" title="Violet"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Violet</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-15.jp2" class="img-responsive" alt="Violet">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 premium">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-16.jp2" title="Kuning"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Kuning</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-16.jp2" class="img-responsive" alt="Kuning">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 misty">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-17.jp2" title="Hitam Misty"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Hitam Misty</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-17.jp2" class="img-responsive" alt="Hitam Misty">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 misty">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-18.jp2" title="Grey Misty"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Grey Misty</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-18.jp2" class="img-responsive" alt="Grey Misty">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 misty">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-19.jp2" title="Navy Misty"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Navy Misty</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-19.jp2" class="img-responsive" alt="Navy Misty">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 misty">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-20.jp2" title="Merah Misty"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Merah Misty</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-20.jp2" class="img-responsive" alt="Merah Misty">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 polka">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-21.jp2" title="Hitam Polka"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Hitam Polka</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-21.jp2" class="img-responsive" alt="Hitam Polka">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 polka">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-22.jp2" title="Navy Polka"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Navy Polka</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-22.jp2" class="img-responsive" alt="Navy Polka">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 polka">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-23.jp2" title="Merah Polka"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Merah Polka</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-23.jp2" class="img-responsive" alt="Merah Polka">
-                </a></div>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-md-4 polka">
-            <div class="portfolio-item">
-              <div class="hover-bg"> <a href="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/bigs-24.jp2" title="Putih Polka"
-                  data-lightbox-gallery="gallery1">
-                  <div class="hover-text">
-                    <h4>Putih Polka</h4>
-                  </div>
-                  <img src="<?= base_Url(); ?>/atributToko2/img/imgKaosKoze/premium/big-24.jp2" class="img-responsive" alt="Putih Polka">
-                </a></div>
-            </div>
-          </div>
+     
 
           <?php 
 // endfor  ?>

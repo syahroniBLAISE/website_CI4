@@ -38,10 +38,12 @@ $routes->get('/konveksi', 'tokoController::konveksi');
 // $routes->get('/', 'loginController::index');
 $routes->get('/admin', 'loginController::login_action');
 $routes->get('/adminKaos', 'adminController::adminKaos');
+$routes->get('/adminKonveksi', 'adminController::adminKonveksi');
 $routes->get('/toko', 'tokoController::index');
 $routes->get('/produk', 'produkController::index');
 $routes->get('/adminToko', 'adminController::adminToko');
 $routes->get('/admin', 'adminController::index');
+
 $routes->post('/hapusProduk', 'produkController::hapusProduk');
 $routes->post('/getProduk', 'produkController::getProduk');
 $routes->get('/getProdukAll', 'produkController::getProdukAll');
@@ -49,9 +51,22 @@ $routes->post('/updateProduk', 'produkController::updateProduk');
 $routes->post('/tambahProduk', 'produkController::tambahProduk');
 $routes->post('/validateProduk', 'produkController::validateProduk');
 $routes->post('/uploadCSV', 'produkController::uploadCSV');
-$routes->get('/shoping', 'halamanShopingController::index');
 $routes->get('/cart', 'produkController::cart');
+
+$routes->post('/hapusKaos', 'kaosController::hapusKaos');
+$routes->post('/getKaos', 'kaosController::getKaos');
+$routes->get('/getKaosAll', 'kaosController::getKaosAll');
+$routes->post('/updateKaos', 'kaosController::updateKaos');
+$routes->post('/tambahKaos', 'kaosController::tambahKaos');
+$routes->post('/validateKaos', 'kaosController::validateKaos');
+$routes->post('/uploadCSVKaos', 'kaosController::uploadCSVKaos');
+$routes->get('/cart', 'kaosController::cart');
+
+
 $routes->get('/toko/galery', 'tokoController::galery');
+
+
+$routes->get('/shoping', 'halamanShopingController::index');
 
 
 $routes->get('/kelolaHalaman', 'adminController::kelolaHalaman');

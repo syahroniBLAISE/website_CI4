@@ -5,7 +5,7 @@
 
 <!--  -->
 <!-- awal content -->
-<div id='base_url'visibility: hidden>
+<div class='base_url' visibility: hidden>
   <?= base_url();?>
 </div>
 <div class="container adminTokoKontainer">
