@@ -1,29 +1,26 @@
-// (function ($) {
-//   "use strict";
-
 $(document).ready(function () {
-  var adminTokoKontainer = $(".adminTokoKontainer").html();
+  var adminTokoKontainer = $(".adminKaosKontainer").html();
   var base_url = $(".base_url").html();
 
   if (adminTokoKontainer) {
     console.log("data");
     ambilData(base_url);
-  }
-});
-
-function ambilData(base_url) {
-  $.ajax({
-    url: `${base_url}/getKaosAll`,
-    dataType: "json",
-    method: "get",
-    success: function (data) {
-      console.log(data);
-      var base_url = "url";
-      var i = 1;
-      data.forEach(function (d) {
-        console.log(d.nama_kaos);
-        $(".tabelBarang").append(
-          `<tr>\n
+    $(".halamanKaos").attr("onClick", "tambahKaosModal()");
+    $(".formCSVKaos").attr("action", "/uploadCSVKaos");
+    $(".modal-footerKaos").attr("action", "clearModalKaos()");
+    function ambilData(base_url) {
+      $.ajax({
+        url: `${base_url}/getKaosAll`,
+        dataType: "json",
+        method: "get",
+        success: function (data) {
+          console.log(data);
+          var base_url = "url";
+          var i = 1;
+          data.forEach(function (d) {
+            console.log(d.nama_kaos);
+            $(".tabelBarang").append(
+              `<tr>\n
                             <th scope='row'>${i}</th>\n
                             <td>${d.nama_kaos}</td>\n 
                             <td>${d.harga_kaos}</td>\n
@@ -33,15 +30,18 @@ function ambilData(base_url) {
                                 <input type='hidden' name='_method' value='DELETE'>\n
                                 <a type='button' class='btn btn-danger btn-sm col-4' onclick='deletProduk(${d.id_kaos})' >DELET</a>\n
                                 </form>\n
-                                <a type='button' class='btn btn-primary btn-sm col-3' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(${d.id_kaos})' id='update'>EDIT</a>\n
+                                <a type='button' class='btn btn-primary btn-sm col-4' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(${d.id_kaos})' id='update'>EDIT</a>\n
                             </td>\n
                             </tr>`
-        );
-        i++;
+            );
+
+            i++;
+          });
+        },
       });
-    },
-  });
-}
+    }
+  }
+});
 function deletProduk(id) {
   console.log("delet produk" + id);
 
@@ -69,18 +69,19 @@ function updateProdukModal(id) {
   onclick.setAttribute("onClick", "updateProduk(" + id + ")");
   var base_url = $(".base_url").html();
   $.ajax({
-    url: `${base_url}/getProduk`,
+    url: `${base_url}/getKaos`,
     data: { id: id },
     dataType: "json",
     method: "post",
     success: function (data) {
       console.log(data);
-      $("#idBarang").val(data.id_produk);
-      $("#namaBarang").val(data.nama_produk);
-      $("#hargaBarang").val(data.harga_produk);
-      $("#kategoriBarang").val(data.kategori_produk);
-      $("#imgBarang").val(data.img_produk);
-      $("#ratingBarang").val(data.rating_produk);
+      $("#idBarang").val(data.id_kaos);
+      $("#namaBarang").val(data.nama_kaos);
+      $("#hargaBarang").val(data.harga_kaos);
+      $("#kategoriBarang").val(data.kategori_kaos);
+      $("#gambarBarang").val(data.gambar_kaos);
+      $("#thumbnailBarang").val(data.thumbnail_kaos);
+      $("#warnaBarang").val(data.warna_kaos);
     },
   });
 }
@@ -90,26 +91,29 @@ function updateProduk(id) {
   var nama_produk = $("#namaBarang").val();
   var harga_produk = $("#hargaBarang").val();
   var kategori_produk = $("#kategoriBarang").val();
-  var img_produk = $("#imgBarang").val();
-  var rating_produk = $("#ratingBarang").val();
+  var gambar_produk = $("#gambarBarang").val();
+  var thumbnail_produk = $("#thumbnailBarang").val();
+  var warna_produk = $("#warnaBarang").val();
   var base_url = $(".base_url").html();
   console.log("data yang diterima updateProduk(" + id_produk + ")");
 
   $.ajax({
-    url: `${base_url}/updateProduk`,
+    url: `${base_url}/updateKaos`,
     data:
-      "id_produk=" +
+      "id_kaos=" +
       id_produk +
-      "&nama_produk=" +
+      "&nama_kaos=" +
       nama_produk +
-      "&harga_produk=" +
+      "&harga_kaos=" +
       harga_produk +
-      "&kategori_produk=" +
+      "&kategori_kaos=" +
       kategori_produk +
-      "&rating_produk=" +
-      rating_produk +
-      "&img_produk=" +
-      img_produk,
+      "&thumbnail_kaos=" +
+      thumbnail_produk +
+      "&gambar_kaos=" +
+      gambar_produk +
+      "&warna_kaos=" +
+      warna_produk,
     dataType: "json",
     type: "post",
     success: function (data) {
@@ -117,7 +121,7 @@ function updateProduk(id) {
       // console.log(Object.keys(data));
 
       if (data == true) {
-        clearModal();
+        clearModalKaos();
         $("#staticBackdrop").removeClass("show");
         location.reload();
       } else {
@@ -127,47 +131,51 @@ function updateProduk(id) {
   });
 }
 
-function clearModal() {
+function clearModalKaos() {
   $("#idBarang").val("");
   $("#namaBarang").val("");
   $("#hargaBarang").val("");
   $("#kategoriBarang").val("");
-  $("#imgBarang").val("");
-  $("#ratingBarang").val("");
+  $("#gambarBarang").val("");
+  $("#thumbnailBarang").val("");
+  $("#warnaBarang").val("");
 }
 
-function tambahProdukModal() {
+function tambahKaosModal() {
   document.getElementById("staticBackdropLabel").innerHTML = "TAMBAH PRODUK";
   var click = document.getElementById("tombol_modal");
   click.setAttribute("onClick", "tambahProduk()");
   // var action = document.getElementById("formulir");
   // action.action = '<?=base_url();?>/tambahProduk';
   console.log("tambahProdukModal");
-  clearModal();
+  clearModalKaos();
 }
 function tambahProduk() {
   // console.log('ajax TAMBAH PRODUK');
   var nama_produk = $("#namaBarang").val();
   var harga_produk = $("#hargaBarang").val();
   var kategori_produk = $("#kategoriBarang").val();
-  var img_produk = $("#imgBarang").val();
-  var rating_produk = $("#ratingBarang").val();
+  var gambar_produk = $("#gambarBarang").val();
+  var thumbnail_produk = $("#thumbnailBarang").val();
+  var warna_produk = $("#warnaBarang").val();
   var base_url = $(".base_url").html();
   console.log("data yang diterima tamabahProduk()" + nama_produk);
 
   $.ajax({
-    url: `${base_url}/tambahProduk`,
+    url: `${base_url}/tambahKaos`,
     data:
-      "nama_produk=" +
+      "&nama_kaos=" +
       nama_produk +
-      "&harga_produk=" +
+      "&harga_kaos=" +
       harga_produk +
-      "&kategori_produk=" +
+      "&kategori_kaos=" +
       kategori_produk +
-      "&rating_produk=" +
-      rating_produk +
-      "&img_produk=" +
-      img_produk,
+      "&thumbnail_kaos=" +
+      thumbnail_produk +
+      "&gambar_kaos=" +
+      gambar_produk +
+      "&warna_kaos=" +
+      warna_produk,
     dataType: "json",
     type: "post",
     success: function (data) {
@@ -175,7 +183,7 @@ function tambahProduk() {
       // console.log(Object.keys(data));
 
       if (data == true) {
-        clearModal();
+        clearModalKaos();
         $("#staticBackdrop").removeClass("show");
         location.reload();
       } else {
@@ -215,4 +223,3 @@ function responDataError(data) {
     }
   });
 }
-// })(jQuery);

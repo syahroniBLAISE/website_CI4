@@ -23,6 +23,14 @@ class  tokoController extends BaseController
 
         return view('toko/index', $data);
     }
+
+    public function tokoLink(){                       
+        $data = [
+            'title' => 'PARTNERSABLON'
+        ];
+
+        return view('toko/link', $data);
+    }
     public function kaos(){  
         session();                         
         $data = [

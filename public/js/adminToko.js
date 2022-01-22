@@ -8,22 +8,22 @@ $(document).ready(function () {
   if (adminTokoKontainer) {
     console.log("data");
     ambilData(base_url);
-  }
-});
-
-function ambilData(base_url) {
-  $.ajax({
-    url: `${base_url}/getProdukAll`,
-    dataType: "json",
-    method: "get",
-    success: function (data) {
-      console.log(data);
-      var base_url = "url";
-      var i = 1;
-      data.forEach(function (d) {
-        console.log(d.nama_produk);
-        $(".tabelBarang").append(
-          `<tr>\n
+    $(".halamanProduk").attr("onClick", "tambahProdukModal()");
+    $(".formCSVProduk").attr("action", "/uploadCSVProduk");
+    $(".modal-footerToko").attr("action", "clearModalToko()");
+    function ambilData(base_url) {
+      $.ajax({
+        url: `${base_url}/getProdukAll`,
+        dataType: "json",
+        method: "get",
+        success: function (data) {
+          console.log(data);
+          var base_url = "url";
+          var i = 1;
+          data.forEach(function (d) {
+            console.log(d.nama_produk);
+            $(".tabelBarang").append(
+              `<tr>\n
                             <th scope='row'>${i}</th>\n
                             <td>${d.nama_produk}</td>\n 
                             <td>${d.harga_produk}</td>\n
@@ -36,12 +36,15 @@ function ambilData(base_url) {
                                 <a type='button' class='btn btn-primary btn-sm col-3' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(${d.id_produk})' id='update'>EDIT</a>\n
                             </td>\n
                             </tr>`
-        );
-        i++;
+            );
+
+            i++;
+          });
+        },
       });
-    },
-  });
-}
+    }
+  }
+});
 function deletProduk(id) {
   console.log("delet produk" + id);
 
@@ -117,7 +120,7 @@ function updateProduk(id) {
       // console.log(Object.keys(data));
 
       if (data == true) {
-        clearModal();
+        clearModalToko();
         $("#staticBackdrop").removeClass("show");
         location.reload();
       } else {
@@ -127,7 +130,7 @@ function updateProduk(id) {
   });
 }
 
-function clearModal() {
+function clearModalToko() {
   $("#idBarang").val("");
   $("#namaBarang").val("");
   $("#hargaBarang").val("");
@@ -143,7 +146,7 @@ function tambahProdukModal() {
   // var action = document.getElementById("formulir");
   // action.action = '<?=base_url();?>/tambahProduk';
   console.log("tambahProdukModal");
-  clearModal();
+  clearModalToko();
 }
 function tambahProduk() {
   // console.log('ajax TAMBAH PRODUK');
@@ -175,7 +178,7 @@ function tambahProduk() {
       // console.log(Object.keys(data));
 
       if (data == true) {
-        clearModal();
+        clearModalToko();
         $("#staticBackdrop").removeClass("show");
         location.reload();
       } else {
@@ -215,4 +218,3 @@ function responDataError(data) {
     }
   });
 }
-// })(jQuery);

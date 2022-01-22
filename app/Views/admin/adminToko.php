@@ -11,7 +11,7 @@
 <div class="container adminTokoKontainer">
   <div class="row">
     <div class="col-3">
-      <button type="button" class="btn btn-primary btn-sm col-10" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="tambahProdukModal()">TAMBAH PRODUK</button>
+      <button type="button" class="btn btn-primary btn-sm col-10 halamanProduk" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="">TAMBAH PRODUK</button>
     </div>
     <div class="col-3">
       <button type="button" class="btn btn-primary btn-sm col-12" data-bs-toggle="modal" data-bs-target="#tambahProdukMasalModal" >TAMBAH PRODUK MASSAL</button>
@@ -89,8 +89,8 @@
         <a type="submit" class="btn btn-primary" onclick="" id='tombol_modal'>Submit</a>
       </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="clearModal()">Close</button>
+      <div class="modal-footer modal-footerToko">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="">Close</button>
       </div>
     </div>
   </div>
@@ -107,7 +107,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form action='/uploadCSV' method='POST' id='formulir' enctype="multipart/form-data">
+       <form action="" class="formCSVProduk" method='POST' id='formulir' enctype="multipart/form-data">
     
         <div class="mb-3">
           <label for="csv" class="form-label">Pilih File</label>
