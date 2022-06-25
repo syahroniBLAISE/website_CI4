@@ -24,6 +24,7 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'usersAuth' => \App\Filters\UsersAuthFilter::class,
+        'cors'     => \App\Filters\Cors::class, 
     ];
 
     /**
@@ -47,13 +48,14 @@ class Filters extends BaseConfig
 
     public $globals = [
         'before' => [
-        'csrf',
-        'usersAuth' => [
-            'except' => [
-                'login',
-                'logout',
-                'loginProses'
-            ]
+            'csrf',
+            'cors',
+            'usersAuth' => [
+                'except' => [
+                    'login',
+                    'logout',
+                    'loginProses'
+                ]
         ]
 		],
 		'after'  => [

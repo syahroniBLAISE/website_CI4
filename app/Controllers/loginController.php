@@ -18,7 +18,9 @@ class loginController extends BaseController
    }
    public function index()
     {
-         return view('login/index');
+        //  return view('login/index');
+        return view('toko/index');
+
 
     }
 	public function loginRegister()
@@ -73,28 +75,31 @@ class loginController extends BaseController
     }
     public function loginProses()
     {
-        $users = new UsersModel();
-        $username = $this->request->getVar('username');
-        $password = $this->request->getVar('password');
-        $dataUser = $users->where([
-            'username' => $username,
-        ])->first();
-        if ($dataUser) {
-            if (password_verify($password, $dataUser->password)) {
-                session()->set([
-                    'username' => $dataUser->username,
-                    'name' => $dataUser->name,
-                    'logged_in' => TRUE
-                ]);
-                return redirect()->to(base_url('admin'));
-            } else {
-                session()->setFlashdata('error', 'Username & Password Salah');
-                return redirect()->back();
-            }
-        } else {
-            session()->setFlashdata('error', 'Username & Password Salah');
-            return redirect()->back();
-        }
+        
+        // $users = new UsersModel();
+        // $username = $this->request->getVar('username');
+        // $password = $this->request->getVar('password');
+        // $dataUser = $users->where([
+        //     'username' => $username,
+        // ])->first();
+        // if ($dataUser) {
+        //     if (password_verify($password, $dataUser->password)) {
+        //         session()->set([
+        //             'username' => $dataUser->username,
+        //             'name' => $dataUser->name,
+        //             'logged_in' => TRUE
+        //         ]);
+        //         return redirect()->to(base_url('admin'));
+        //     } else {
+        //         session()->setFlashdata('error', 'Username & Password Salah');
+        //         return redirect()->back();
+        //     }
+        // } else {
+        //     session()->setFlashdata('error', 'Username & Password Salah');
+        //     return redirect()->back();
+        // }
+
+        return redirect()->to(base_url('admin'));
     }
 
  
@@ -107,16 +112,18 @@ class loginController extends BaseController
    public function login_action() 
    {
 
-      $userLogin = true;
-      if($userLogin == true)
-      {  $data = [
-            'title' => 'HALAMAN ADMIN UTAMA',
-            'data_halaman' => $this->dataHalaman->get_data_all()               
-        ];
-         return view('admin/index', $data);
-      }else{
-         return view('login/index');
-      }
+    //   $userLogin = true;
+    //   if($userLogin == true)
+    //   {  $data = [
+    //         'title' => 'HALAMAN ADMIN UTAMA',
+    //         'data_halaman' => $this->dataHalaman->get_data_all()               
+    //     ];
+    //      return view('admin/index', $data);
+    //   }else{
+    //      return view('login/index');
+    //   }
+
+      return view('admin/index', $data);
    }
 
 }

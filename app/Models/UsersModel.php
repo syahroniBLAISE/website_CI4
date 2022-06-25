@@ -4,7 +4,7 @@ use CodeIgniter\Model;
  
 class UsersModel extends Model
 {
-    protected $table = "users";
+    protected $table = "user";
     protected $primaryKey = "username";
     protected $returnType = "object";
     protected $useTimestamps = true;

@@ -14,7 +14,7 @@ class  tokoController extends BaseController
         $this->kaosModel = new kaosModel();
     }
     public function index(){  
-        session();                         
+        // session();                         
         $data = [
             'title' => 'PARTNERSABLON',
             'data' => $this->produkModel->get_data_all(),

@@ -18,7 +18,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  */
 $routes->setDefaultNamespace('App\Controllers');
 // $routes->setDefaultController('Home');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('tokoController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -44,6 +44,11 @@ $routes->post('/register/process', 'loginController::process');
 $routes->get('/login', 'loginController::index');
 $routes->post('/loginProses', 'loginController::loginProses');
 $routes->get('/logout', 'loginController::logout');
+
+
+// restAPI handling menggunakan library CI4 ------------------------------->
+$routes->resource('APIController');
+
 
 $routes->get('/admin', 'loginController::login_action');
 $routes->get('/adminKaos', 'adminController::adminKaos');
