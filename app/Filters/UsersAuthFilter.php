@@ -12,7 +12,8 @@ class UsersAuthFilter implements FilterInterface
         if(is_null(session()->get('logged_in')))
         {
             // header("Location:".base_url('login'));
-            return redirect()->to(base_url('login'));
+            // return redirect()->to(base_url('login'));
+            return redirect()->to(base_url('/'));
         }
 
     }

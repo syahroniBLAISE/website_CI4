@@ -1,0 +1,12 @@
+.sidebarColor {
+  background-color: #020720;
+  background-image: linear-gradient(180deg, #020daf 10%, #46be22 100%);
+  background-size: cover;
+}
+.imgAdmin {
+  /* display: block; */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 7px;
+  width: 80px;
+}

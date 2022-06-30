@@ -1,17 +1,19 @@
-<?= $this->extend('layouts/template');?>
+<?= $this->extend('layouts/templateAdmin');?>
 
 <?= $this->section('content')?>
 <!--  -->
-
+<div class='base_url' visibility: hidden>
+  <?= base_url();?>
+</div>
 <!--  -->
 <!-- awal content -->
-<div class="container adminTokoKontainer">
+<div class="container adminHalamanKontainer">
   <div class="row">
     <div class="col-3">
-      <button type="button" class="btn btn-primary btn-sm col-10" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="tambahProdukModal()">TAMBAH PRODUK</button>
+      <button type="button" class="btn btn-primary btn-sm col-10" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="tambahHalamanModal()">TAMBAH HALAMAN</button>
     </div>
     <div class="col-3">
-      <button type="button" class="btn btn-primary btn-sm col-12" data-bs-toggle="modal" data-bs-target="#tambahProdukMasalModal" >TAMBAH PRODUK MASSAL</button>
+      
     </div>
     <div class="col-6"></div>
   </div>
@@ -20,9 +22,8 @@
       <thead>
         <tr>
           <th scope="col">NO</th>
-          <th scope="col">NAMA PRODUK</th>
-          <th scope="col">HARGA</th>
-             <th scope="col">IMAGE</th>
+          <th scope="col">TITLE</th>
+          <th scope="col">KETERANGAN</th>
           <th scope="col">SETING</th>
         </tr>
       </thead>
@@ -49,40 +50,22 @@
       <div class="modal-body">
        <form action='' method='POST' id='formulir' enctype="multipart/formdata">
         <div class="mb-3">
-          <label for="namaBarang" class="form-label">NAMA BARANG</label>
-          <input type="text" class="form-control" name='nama_produk' id="namaBarang" >
-          <div class="" id="namaBarangError"></div>
-          <input type="hidden" class="form-control" name='id_produk' id="idBarang" >
+          <label for="titleHalaman" class="form-label">TITLE</label>
+          <input type="text" class="form-control" name='titleHalaman' id="titleHalaman" >
+          <div class="" id="titleHalamanError"></div>
+          <input type="hidden" class="form-control" name='id_halaman' id="idBarang" >
         </div>
         <div class="mb-3">
-          <label for="hargaBarang" class="form-label">HARGA BARANG</label>
-          <input  type="text"  class="form-control" name='harga_produk' id="hargaBarang">
-          <div class="" id="hargaBarangError"></div>
+          <label for="linkHalaman" class="form-label">LINK</label>
+          <input  type="text"  class="form-control" name='harga_produk' id="linkHalaman">
+          <div class="" id="linkHalamanError"></div>
         </div>
         <div class="mb-3">
-          <label for="kategori" class="form-label">KATEGORI</label>
-          <input  type="text"  class="form-control" name='kategori_produk' id="kategoriBarang">
+          <label for="keteranganHalaman" class="form-label">KETERANGAN</label>
+          <input  type="text"  class="form-control" name='keteranganHalaman' id="keteranganHalaman">
           <div class="" id="kategoriBarangError"></div>
 
         </div>
-        <div class="mb-3">
-          <label for="rating" class="form-label">RATING</label>
-          <input  type="text"  class="form-control" name='rating_produk' id="ratingBarang">
-          <div class="" id="ratingBarangError"></div>
-
-        </div>
-        <div class="mb-3">
-          <label for="img" class="form-label">img</label>
-          <input  type="text"  class="form-control" name='img_produk' id="imgBarang">
-          <div class="" id="imgBarangError"></div>
-
-        </div>
-        <!-- <div class="mb-3">
-          <label for="gambar" class="form-label">Pilih Gambar</label>
-          <div class="invalid-feedback"><?= $validation->getError('gambar_produk');?></div>
-          <input  type="file"  class="form-control" name='gambar_produk' id="gambar">
-        </div> -->
-        
         <a type="submit" class="btn btn-primary" onclick="" id='tombol_modal'>Submit</a>
       </form>
       </div>

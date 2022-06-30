@@ -46,23 +46,23 @@ class Filters extends BaseConfig
     //     ],
     // ];
 
-    public $globals = [
-        'before' => [
-            'csrf',
-            'cors',
-            'usersAuth' => [
-                'except' => [
-                    'login',
-                    'logout',
-                    'loginProses'
-                ]
-        ]
-		],
-		'after'  => [
-			'toolbar',
-			//'honeypot'
-		],
-    ];
+    // public $globals = [
+    //     'before' => [
+    //         'csrf',
+    //         'cors',
+    //         'usersAuth' => [
+    //             'except' => [
+    //                 'login',
+    //                 'logout',
+    //                 'loginProses'
+    //             ]
+    //     ]
+	// 	],
+	// 	'after'  => [
+	// 		'toolbar',
+	// 		//'honeypot'
+	// 	],
+    // ];
 
     /**
      * List of filter aliases that works on a

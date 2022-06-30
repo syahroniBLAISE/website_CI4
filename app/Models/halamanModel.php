@@ -14,10 +14,6 @@ class halamanModel extends Model
     {
         return $this->findAll();
     }
-//     public function save_data($data)
-//     {
-        
-//         // return $this->insert($data);
-//     }
+
 }
 ?>

@@ -28,9 +28,9 @@ $(document).ready(function () {
                             <td><form action='${base_url}${d.id_kaos}'  method='POST' class='d-inline'>\n
                                 <?= csrf_field(); ?>\n
                                 <input type='hidden' name='_method' value='DELETE'>\n
-                                <a type='button' class='btn btn-danger btn-sm col-4' onclick='deletProduk(${d.id_kaos})' >DELET</a>\n
+                                <a type='button' class='btn btn-danger btn-sm col-4' onclick='deletKaos(${d.id_kaos})' >DELET</a>\n
                                 </form>\n
-                                <a type='button' class='btn btn-primary btn-sm col-4' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateProdukModal(${d.id_kaos})' id='update'>EDIT</a>\n
+                                <a type='button' class='btn btn-primary btn-sm col-4' data-bs-toggle='modal' data-bs-target='#staticBackdrop' onclick='updateKaosModal(${d.id_kaos})' id='update'>EDIT</a>\n
                             </td>\n
                             </tr>`
             );
@@ -42,11 +42,12 @@ $(document).ready(function () {
     }
   }
 });
-function deletProduk(id) {
-  console.log("delet produk" + id);
+
+function deletKaos(id) {
+  console.log("delet produk xxxxxxxxxx" + id);
 
   //   var id_produk = id;
-  console.log("data yang diterima updateProduk(" + id + ")");
+  console.log("data yang diterima deletProduk(" + id + ")");
   var base_url = $(".base_url").html();
   $.ajax({
     url: `${base_url}/hapusKaos`,
@@ -63,10 +64,10 @@ function deletProduk(id) {
     },
   });
 }
-function updateProdukModal(id) {
-  document.getElementById("staticBackdropLabel").innerHTML = "UPDATE PRODUK";
+function updateKaosModal(id) {
+  document.getElementById("staticBackdropLabel").innerHTML = "UPDATE KAOS";
   var onclick = document.getElementById("tombol_modal");
-  onclick.setAttribute("onClick", "updateProduk(" + id + ")");
+  onclick.setAttribute("onClick", "updateKaos(" + id + ")");
   var base_url = $(".base_url").html();
   $.ajax({
     url: `${base_url}/getKaos`,
@@ -86,7 +87,7 @@ function updateProdukModal(id) {
   });
 }
 
-function updateProduk(id) {
+function updateKaos(id) {
   var id_produk = id;
   var nama_produk = $("#namaBarang").val();
   var harga_produk = $("#hargaBarang").val();

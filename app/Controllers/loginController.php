@@ -112,16 +112,16 @@ class loginController extends BaseController
    public function login_action() 
    {
 
-    //   $userLogin = true;
-    //   if($userLogin == true)
-    //   {  $data = [
-    //         'title' => 'HALAMAN ADMIN UTAMA',
-    //         'data_halaman' => $this->dataHalaman->get_data_all()               
-    //     ];
-    //      return view('admin/index', $data);
-    //   }else{
-    //      return view('login/index');
-    //   }
+      $userLogin = true;
+      if($userLogin == true)
+      {  $data = [
+            'title' => 'HALAMAN ADMIN UTAMA',
+            'data_halaman' => $this->dataHalaman->get_data_all()               
+        ];
+         return view('admin/index', $data);
+      }else{
+         return view('login/index');
+      }
 
       return view('admin/index', $data);
    }

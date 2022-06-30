@@ -2,15 +2,16 @@
 
 <?= $this->section('content')?>
 <!--  -->
+
+<!--  -->
+<!-- awal content -->
 <div class='base_url' visibility: hidden>
   <?= base_url();?>
 </div>
-<!--  -->
-<!-- awal content -->
-<div class="container adminKaosKontainer">
+<div class="container adminTokoKontainer">
   <div class="row">
     <div class="col-3">
-      <button type="button" class="btn btn-primary btn-sm col-10 halamanKaos" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="">TAMBAH PRODUK</button>
+      <button type="button" class="btn btn-primary btn-sm col-10 halamanProduk" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="">TAMBAH PRODUK</button>
     </div>
     <div class="col-3">
       <button type="button" class="btn btn-primary btn-sm col-12" data-bs-toggle="modal" data-bs-target="#tambahProdukMasalModal" >TAMBAH PRODUK MASSAL</button>
@@ -52,44 +53,43 @@
        <form action='' method='POST' id='formulir' enctype="multipart/formdata">
         <div class="mb-3">
           <label for="namaBarang" class="form-label">NAMA BARANG</label>
-          <input type="text" class="form-control" name='nama_kaos' id="namaBarang" >
+          <input type="text" class="form-control" name='nama_produk' id="namaBarang" >
           <div class="" id="namaBarangError"></div>
-          <input type="hidden" class="form-control" name='id_kaos' id="idBarang" >
+          <input type="hidden" class="form-control" name='id_produk' id="idBarang" >
         </div>
         <div class="mb-3">
           <label for="hargaBarang" class="form-label">HARGA BARANG</label>
-          <input  type="text"  class="form-control" name='harga_kaos' id="hargaBarang">
+          <input  type="text"  class="form-control" name='harga_produk' id="hargaBarang">
           <div class="" id="hargaBarangError"></div>
         </div>
         <div class="mb-3">
           <label for="kategori" class="form-label">KATEGORI</label>
-          <input  type="text"  class="form-control" name='kategori_kaos' id="kategoriBarang">
+          <input  type="text"  class="form-control" name='kategori_produk' id="kategoriBarang">
           <div class="" id="kategoriBarangError"></div>
 
         </div>
         <div class="mb-3">
-          <label for="warnaBarang" class="form-label">WARNA</label>
-          <input  type="text"  class="form-control" name='warnaBarang' id="warnaBarang">
-          <div class="" id="warnaBarangError"></div>
-
-        </div>
-                <div class="mb-3">
-          <label for="gambarBarang" class="form-label">GAMBAR</label>
-          <input  type="text"  class="form-control" name='gambarBarang' id="gambarBarang">
-          <div class="" id="gambarBarangError"></div>
+          <label for="rating" class="form-label">RATING</label>
+          <input  type="text"  class="form-control" name='rating_produk' id="ratingBarang">
+          <div class="" id="ratingBarangError"></div>
 
         </div>
         <div class="mb-3">
-          <label for="thumbnailBarang" class="form-label">THUMBNAIL</label>
-          <input  type="text"  class="form-control" name='gambar_kaos' id="thumbnailBarang">
-          <div class="" id="thumbnailBarangError"></div>
+          <label for="img" class="form-label">img</label>
+          <input  type="text"  class="form-control" name='img_produk' id="imgBarang">
+          <div class="" id="imgBarangError"></div>
 
         </div>
+        <!-- <div class="mb-3">
+          <label for="gambar" class="form-label">Pilih Gambar</label>
+          <div class="invalid-feedback"><?= $validation->getError('gambar_produk');?></div>
+          <input  type="file"  class="form-control" name='gambar_produk' id="gambar">
+        </div> -->
         
         <a type="submit" class="btn btn-primary" onclick="" id='tombol_modal'>Submit</a>
       </form>
       </div>
-      <div class="modal-footer modal-footerKaos">
+      <div class="modal-footer modal-footerToko">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="">Close</button>
       </div>
     </div>
@@ -107,7 +107,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form class="formCSVKaos" action="" method='POST' id='formulir' enctype="multipart/form-data">
+       <form action="" class="formCSVProduk" method='POST' id='formulir' enctype="multipart/form-data">
     
         <div class="mb-3">
           <label for="csv" class="form-label">Pilih File</label>

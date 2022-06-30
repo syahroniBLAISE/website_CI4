@@ -71,16 +71,6 @@ class  tokoController extends BaseController
         return view('toko/galery', $data);
     }
 
-    // public function index2(){   
-    //     session();    
-    //     $data = [
-    //         'title' => 'PARTNERSABLON',
-    //         'data' => $this->produkModel->get_data_all(),
-    //         'cart' =>  \Config\Services::cart()
-    //     ];
-        
-    //     return view('toko/produkToko', $data);
-    // }
 
     
 }

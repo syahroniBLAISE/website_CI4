@@ -1,17 +1,33 @@
-<?= $this->extend('layouts/template');?>
+<?= $this->extend('layouts/templateAdmin');?>
 
 <?= $this->section('content')?>
 <!--  -->
-
-<!--  -->
-<!-- awal content -->
 <div class='base_url' visibility: hidden>
   <?= base_url();?>
 </div>
-<div class="container adminTokoKontainer">
+<!--  -->
+<!-- awal content -->
+<div class="container adminStokKontainer">
+  <div class="row">
+    <div class="col">
+      <form
+          class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="" method="post">
+          <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                  aria-label="Search" aria-describedby="basic-addon2" name="keyword">
+              <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit" name="button">
+                      <i class="fas fa-search fa-sm"></i>
+                  </button>
+              </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  <br>
   <div class="row">
     <div class="col-3">
-      <button type="button" class="btn btn-primary btn-sm col-10 halamanProduk" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="">TAMBAH PRODUK</button>
+      <button type="button" class="btn btn-primary btn-sm col-10 halamanStok" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="">TAMBAH PRODUK</button>
     </div>
     <div class="col-3">
       <button type="button" class="btn btn-primary btn-sm col-12" data-bs-toggle="modal" data-bs-target="#tambahProdukMasalModal" >TAMBAH PRODUK MASSAL</button>
@@ -19,22 +35,33 @@
     <div class="col-6"></div>
   </div>
   <div class="row">
+    <?php 
+    // dd($data_produk) 
+    ?>
     <table class="table">
       <thead>
         <tr>
           <th scope="col">NO</th>
           <th scope="col">NAMA PRODUK</th>
-          <th scope="col">HARGA</th>
-             <th scope="col">IMAGE</th>
-          <th scope="col">SETING</th>
+          <th scope="col">WARNA</th>
+             <th scope="col">SIZE</th>
+          <th scope="col">JUMLAH</th>
+          <th scope="col">KATEGORI</th>
+          <th scope="col">SETTING</th>
         </tr>
       </thead>
       <tbody  class="tabelBarang">
 
-        </tr>
+      <!-- tabel stok yang ada di layouts dan javascritp ajax stok  -->
+        <?= $this->include('layouts/templateAdmin/tableStok'); ?>
 
       </tbody>
     </table>
+  </div>
+  <div class="row">
+    <div class="col pagination">
+      <?= $pager->Links('data_produk', 'stok_pagination') ?>
+    </div>
   </div>
 </div>
 
@@ -52,44 +79,38 @@
       <div class="modal-body">
        <form action='' method='POST' id='formulir' enctype="multipart/formdata">
         <div class="mb-3">
-          <label for="namaBarang" class="form-label">NAMA BARANG</label>
-          <input type="text" class="form-control" name='nama_produk' id="namaBarang" >
-          <div class="" id="namaBarangError"></div>
-          <input type="hidden" class="form-control" name='id_produk' id="idBarang" >
+          <label for="namaProduk" class="form-label">NAMA PRODUK</label>
+          <input type="text" class="form-control" name='nama_produk' id="namaProduk" >
+          <div class="" id="namaProdukError"></div>
+          <input type="hidden" class="form-control" name='id_produk' id="idProduk" >
         </div>
         <div class="mb-3">
-          <label for="hargaBarang" class="form-label">HARGA BARANG</label>
-          <input  type="text"  class="form-control" name='harga_produk' id="hargaBarang">
-          <div class="" id="hargaBarangError"></div>
+          <label for="warna" class="form-label">WARNA</label>
+          <input  type="text"  class="form-control" name='warna' id="warna">
+          <div class="" id="warnaError"></div>
         </div>
         <div class="mb-3">
+          <label for="size" class="form-label">SIZE</label>
+          <input  type="text"  class="form-control" name='size' id="size">
+          <div class="" id="sizeProdukError"></div>
+
+        </div>
+        <div class="mb-3">
+          <label for="jumlah" class="form-label">JUMLAH</label>
+          <input  type="text"  class="form-control" name='jumlah' id="jumlah">
+          <div class="" id="jumlahError"></div>
+
+        </div>
+                <div class="mb-3">
           <label for="kategori" class="form-label">KATEGORI</label>
-          <input  type="text"  class="form-control" name='kategori_produk' id="kategoriBarang">
-          <div class="" id="kategoriBarangError"></div>
+          <input  type="text"  class="form-control" name='kategori' id="kategori">
+          <div class="" id="kategoriError"></div>
 
         </div>
-        <div class="mb-3">
-          <label for="rating" class="form-label">RATING</label>
-          <input  type="text"  class="form-control" name='rating_produk' id="ratingBarang">
-          <div class="" id="ratingBarangError"></div>
-
-        </div>
-        <div class="mb-3">
-          <label for="img" class="form-label">img</label>
-          <input  type="text"  class="form-control" name='img_produk' id="imgBarang">
-          <div class="" id="imgBarangError"></div>
-
-        </div>
-        <!-- <div class="mb-3">
-          <label for="gambar" class="form-label">Pilih Gambar</label>
-          <div class="invalid-feedback"><?= $validation->getError('gambar_produk');?></div>
-          <input  type="file"  class="form-control" name='gambar_produk' id="gambar">
-        </div> -->
-        
         <a type="submit" class="btn btn-primary" onclick="" id='tombol_modal'>Submit</a>
       </form>
       </div>
-      <div class="modal-footer modal-footerToko">
+      <div class="modal-footer modal-footerKaos">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="">Close</button>
       </div>
     </div>
@@ -107,7 +128,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form action="" class="formCSVProduk" method='POST' id='formulir' enctype="multipart/form-data">
+       <form class="formCSVStok" action="" method='POST' id='formulir' enctype="multipart/form-data">
     
         <div class="mb-3">
           <label for="csv" class="form-label">Pilih File</label>
