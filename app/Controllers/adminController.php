@@ -25,8 +25,8 @@ class adminController extends BaseController
         {  $data = [
                 'title' => 'HALAMAN ADMIN UTAMA',
                 'data_halaman' => $this->dataHalaman->get_data_all(),
-                // 'pemasukan' = $this->catatanPenjualanModel->getTotalPenjualan(),               
-                // 'pengeluaran' = $this->catatanPenjualanModel->getTotalPengeluaran()               
+                'pemasukan' => $this->catatanPenjualanModel->getTotalPenjualan()              
+                // 'pengeluaran' => $this->catatanPenjualanModel->getTotalPengeluaran()               
             ];
             return view('admin/index', $data);
         }else{
@@ -41,8 +41,7 @@ class adminController extends BaseController
         {  $data = [
                 'title' => 'HALAMAN ADMIN UTAMA',
                 'data_halaman' => $this->dataHalaman->get_data_all(),
-                'pemasukan' => $this->catatanPenjualanModel->getTotalPenjualan()              
-                // 'pengeluaran' = $this->catatanPenjualanModel->getTotalPengeluaran()               
+                'pemasukan' => $this->catatanPenjualanModel->getTotalPenjualan()                         
             ];
             return view('admin/index', $data);
         }else{
